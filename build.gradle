@@ -30,15 +30,3 @@ gradlePlugin {
         }
     }
 }
-
-//publishing {
-//    publications {
-//        maven(MavenPublication) {
-//            groupId = 'vlad.kuchuk.gitbranchtagging'
-//            artifactId = 'plugin'
-//            version = '0.1'
-//
-//            from components.java
-//        }
-//    }
-//}

@@ -6,11 +6,24 @@ import org.gradle.api.Project
 class GitBranchTaggingPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
-        project.group = 'Git'
-        project.tasks.register('getCurrentBranch') {
-            doLast {
-                println 'git symbolic-ref --short HEAD'.execute().text
-            }
+
+//        project.extensions.create('gitBranchTagging', GitBranchTaggingExtensions)
+
+        project.tasks.register('getCurrentBranchName', GetCurrentBranchNameTask) {
+            setGroup('Git')
+            identifyBranchName()
+            finalizedBy('getLastPublishedTag')
+        }
+        project.tasks.register('getLastPublishedTag', GetLastPublishedTagTask) {
+            setGroup('Git')
+//            dependsOn('getCurrentBranchName')
+            identifyLastTag()
+            finalizedBy('defineBuildVersion')
+        }
+        project.tasks.register('defineBuildVersion', DefineBuildVersionTask) {
+            setGroup('Git')
+//            dependsOn('getLastPublishedTag')
+            defineVersion()
         }
     }
 }
