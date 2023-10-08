@@ -7,8 +7,6 @@ class GitBranchTaggingPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
 
-//        project.extensions.create('gitBranchTagging', GitBranchTaggingExtensions)
-
         project.tasks.register('getCurrentBranchName', GetCurrentBranchNameTask) {
             setGroup('Git')
             identifyBranchName()
@@ -16,14 +14,17 @@ class GitBranchTaggingPlugin implements Plugin<Project> {
         }
         project.tasks.register('getLastPublishedTag', GetLastPublishedTagTask) {
             setGroup('Git')
-//            dependsOn('getCurrentBranchName')
             identifyLastTag()
             finalizedBy('defineBuildVersion')
         }
         project.tasks.register('defineBuildVersion', DefineBuildVersionTask) {
             setGroup('Git')
-//            dependsOn('getLastPublishedTag')
             defineVersion()
+            finalizedBy('assignBranchTag')
+        }
+        project.tasks.register('assignBranchTag', AssignBranchTagTask) {
+            setGroup('Git')
+            assignTag()
         }
     }
 }
