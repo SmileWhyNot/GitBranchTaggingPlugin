@@ -2,6 +2,10 @@ package vlad.kuchuk
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import vlad.kuchuk.tasks.AssignBranchTagTask
+import vlad.kuchuk.tasks.DefineBuildVersionTask
+import vlad.kuchuk.tasks.GetCurrentBranchNameTask
+import vlad.kuchuk.tasks.GetLastPublishedTagTask
 
 class GitBranchTaggingPlugin implements Plugin<Project> {
     @Override
