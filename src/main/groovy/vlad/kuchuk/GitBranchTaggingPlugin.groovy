@@ -22,22 +22,27 @@ class GitBranchTaggingPlugin implements Plugin<Project> {
             identifyLastTag()
             finalizedBy('checkIfCurStateHasTag')
         }
-        def curStateHasNoTag = project.tasks.register('checkIfCurStateHasTag', CheckIfCurStateHasTagTask) {
+        project.tasks.register('checkIfCurStateHasTag', CheckIfCurStateHasTagTask) {
             setGroup('Git')
+            checkIfCurStateAlreadyTagged()
             finalizedBy('defineBuildVersion')
         }
         project.tasks.register('defineBuildVersion', DefineBuildVersionTask) {
             setGroup('Git')
-            onlyIf() {
-                curStateHasNoTag.get().state.executed
+            GitBranchTaggingExtensions extensions = GitBranchTaggingExtensions.getInstance()
+            onlyIf {
+                (!extensions.getAlreadyTagged())
+                println(extensions.getAlreadyTagged())
             }
             defineVersion()
             finalizedBy('assignBranchTag')
         }
         project.tasks.register('assignBranchTag', AssignBranchTagTask) {
             setGroup('Git')
-            onlyIf() {
-                curStateHasNoTag.get().state.executed
+            GitBranchTaggingExtensions extensions = GitBranchTaggingExtensions.getInstance()
+            onlyIf {
+                (!extensions.getAlreadyTagged())
+                println(extensions.getAlreadyTagged())
             }
             assignTag()
         }

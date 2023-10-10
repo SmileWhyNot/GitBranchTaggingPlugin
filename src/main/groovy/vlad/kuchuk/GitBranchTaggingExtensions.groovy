@@ -6,6 +6,7 @@ class GitBranchTaggingExtensions {
     String currentBranch
     String lastTag
     String buildVersion
+    boolean alreadyTagged
 
     private GitBranchTaggingExtensions() {}
 
@@ -28,6 +29,10 @@ class GitBranchTaggingExtensions {
         this.buildVersion = buildVersion
     }
 
+    void setAlreadyTagged(boolean alreadyTagged) {
+        this.alreadyTagged = alreadyTagged
+    }
+
     String getCurrentBranch() {
         return currentBranch
     }
@@ -38,5 +43,9 @@ class GitBranchTaggingExtensions {
 
     String getBuildVersion() {
         return buildVersion
+    }
+
+    boolean getAlreadyTagged() {
+        return alreadyTagged
     }
 }
