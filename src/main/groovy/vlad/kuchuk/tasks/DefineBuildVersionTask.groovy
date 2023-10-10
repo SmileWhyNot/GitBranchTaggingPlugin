@@ -42,7 +42,7 @@ class DefineBuildVersionTask extends DefaultTask{
                 minor++
                 break
             default:
-                return "${major}.${minor}-SNAPSHOT"
+                return "v${major}.${minor}-SNAPSHOT"
         }
 
         return "v${major}.${minor}"

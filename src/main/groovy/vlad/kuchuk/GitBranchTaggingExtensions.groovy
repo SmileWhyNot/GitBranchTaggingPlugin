@@ -3,11 +3,11 @@ package vlad.kuchuk
 class GitBranchTaggingExtensions {
     private static GitBranchTaggingExtensions instance = null
 
-    String currentBranch
-    String lastTag
+    String currentBranchName
+    String lastPublishedTag
     String buildVersion
     boolean alreadyTagged
-    boolean hasUncommittedChanges
+    boolean uncommittedChanges
 
     private GitBranchTaggingExtensions() {}
 
@@ -19,11 +19,11 @@ class GitBranchTaggingExtensions {
     }
 
     void setCurrentBranch(String currentBranch) {
-        this.currentBranch = currentBranch
+        this.currentBranchName = currentBranch
     }
 
     void setLastTag(String lastTag) {
-        this.lastTag = lastTag
+        this.lastPublishedTag = lastTag
     }
 
     void setBuildVersion(String buildVersion) {
@@ -34,27 +34,27 @@ class GitBranchTaggingExtensions {
         this.alreadyTagged = alreadyTagged
     }
 
-    void setHasUncommittedChanges(boolean hasUncommittedChanges) {
-        this.hasUncommittedChanges = hasUncommittedChanges
+    void setUncommittedChanges(boolean hasUncommittedChanges) {
+        this.uncommittedChanges = hasUncommittedChanges
     }
 
     String getCurrentBranch() {
-        return currentBranch
+        return currentBranchName
     }
 
     String getLastTag() {
-        return lastTag
+        return lastPublishedTag
     }
 
     String getBuildVersion() {
         return buildVersion
     }
 
-    boolean getAlreadyTagged() {
+    boolean isAlreadyTagged() {
         return alreadyTagged
     }
 
-    boolean getHasUncommittedChanges() {
-        return hasUncommittedChanges
+    boolean hasUncommittedChanges() {
+        return uncommittedChanges
     }
 }

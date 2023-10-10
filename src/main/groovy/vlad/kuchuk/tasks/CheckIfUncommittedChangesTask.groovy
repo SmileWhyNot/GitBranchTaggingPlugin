@@ -17,9 +17,9 @@ class CheckIfUncommittedChangesTask extends DefaultTask {
 
             if (!result.contains('nothing to commit')) {
                 writer.write('Uncommitted changes found ' + extensions.lastTag + '.uncommitted\n')
-                extensions.setHasUncommittedChanges(true)
+                extensions.setUncommittedChanges(true)
             } else {
-                extensions.setHasUncommittedChanges(false)
+                extensions.setUncommittedChanges(false)
             }
 
             writer.close()

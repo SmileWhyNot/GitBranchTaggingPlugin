@@ -29,7 +29,7 @@ class GitBranchTaggingPlugin implements Plugin<Project> {
             setGroup('Git')
             GitBranchTaggingExtensions extensions = GitBranchTaggingExtensions.getInstance()
             onlyIf {
-                (!extensions.getHasUncommittedChanges())
+                (!extensions.hasUncommittedChanges())
             }
             finalizedBy('defineBuildVersion')
         }
@@ -37,7 +37,7 @@ class GitBranchTaggingPlugin implements Plugin<Project> {
             setGroup('Git')
             GitBranchTaggingExtensions extensions = GitBranchTaggingExtensions.getInstance()
             onlyIf {
-                (!extensions.getAlreadyTagged()) && (!extensions.getHasUncommittedChanges())
+                (!extensions.isAlreadyTagged()) && (!extensions.hasUncommittedChanges())
             }
             finalizedBy('assignBranchTag')
         }
@@ -45,7 +45,7 @@ class GitBranchTaggingPlugin implements Plugin<Project> {
             setGroup('Git')
             GitBranchTaggingExtensions extensions = GitBranchTaggingExtensions.getInstance()
             onlyIf {
-                (!extensions.getAlreadyTagged()) && (!extensions.getHasUncommittedChanges())
+                (!extensions.isAlreadyTagged()) && (!extensions.hasUncommittedChanges())
             }
         }
     }
