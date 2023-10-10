@@ -15,5 +15,6 @@ class AssignBranchTagTask extends DefaultTask{
         println(command)
         def res = 'git push origin --tags'.execute().text
         println(res)
+        // Check if sending tags to origin works
     }
 }
