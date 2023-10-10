@@ -7,6 +7,7 @@ class GitBranchTaggingExtensions {
     String lastTag
     String buildVersion
     boolean alreadyTagged
+    boolean hasUncommittedChanges
 
     private GitBranchTaggingExtensions() {}
 
@@ -33,6 +34,10 @@ class GitBranchTaggingExtensions {
         this.alreadyTagged = alreadyTagged
     }
 
+    void setHasUncommittedChanges(boolean hasUncommittedChanges) {
+        this.hasUncommittedChanges = hasUncommittedChanges
+    }
+
     String getCurrentBranch() {
         return currentBranch
     }
@@ -47,5 +52,9 @@ class GitBranchTaggingExtensions {
 
     boolean getAlreadyTagged() {
         return alreadyTagged
+    }
+
+    boolean getHasUncommittedChanges() {
+        return hasUncommittedChanges
     }
 }
