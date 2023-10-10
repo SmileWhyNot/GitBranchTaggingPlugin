@@ -14,17 +14,14 @@ class GitBranchTaggingPlugin implements Plugin<Project> {
 
         project.tasks.register('getCurrentBranchName', GetCurrentBranchNameTask) {
             setGroup('Git')
-            identifyBranchName()
             finalizedBy('getLastPublishedTag')
         }
         project.tasks.register('getLastPublishedTag', GetLastPublishedTagTask) {
             setGroup('Git')
-            identifyLastTag()
             finalizedBy('checkIfCurStateHasTag')
         }
         project.tasks.register('checkIfCurStateHasTag', CheckIfCurStateHasTagTask) {
             setGroup('Git')
-            checkIfCurStateAlreadyTagged()
             finalizedBy('defineBuildVersion')
         }
         project.tasks.register('defineBuildVersion', DefineBuildVersionTask) {
@@ -32,9 +29,7 @@ class GitBranchTaggingPlugin implements Plugin<Project> {
             GitBranchTaggingExtensions extensions = GitBranchTaggingExtensions.getInstance()
             onlyIf {
                 (!extensions.getAlreadyTagged())
-                println(extensions.getAlreadyTagged())
             }
-            defineVersion()
             finalizedBy('assignBranchTag')
         }
         project.tasks.register('assignBranchTag', AssignBranchTagTask) {
@@ -42,9 +37,7 @@ class GitBranchTaggingPlugin implements Plugin<Project> {
             GitBranchTaggingExtensions extensions = GitBranchTaggingExtensions.getInstance()
             onlyIf {
                 (!extensions.getAlreadyTagged())
-                println(extensions.getAlreadyTagged())
             }
-            assignTag()
         }
     }
 }
