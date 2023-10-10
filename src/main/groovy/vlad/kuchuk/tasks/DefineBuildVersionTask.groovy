@@ -28,6 +28,10 @@ class DefineBuildVersionTask extends DefaultTask{
                 major++
                 minor = 0
                 break
+            case 'main':
+                major++
+                minor = 0
+                break
             case 'stage':
                 minor++
                 return "v${major}.${minor}-rc"
