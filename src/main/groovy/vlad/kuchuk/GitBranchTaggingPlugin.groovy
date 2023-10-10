@@ -12,7 +12,10 @@ import vlad.kuchuk.tasks.GetLastPublishedTagTask
 class GitBranchTaggingPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
-
+        project.tasks. register('tagging') {
+            setGroup('Git')
+            dependsOn 'getCurrentBranchName', 'getLastPublishedTag', 'checkIfUncommittedChanges', 'checkIfCurStateHasTag', 'defineBuildVersion', 'assignBranchTag'
+        }
         project.tasks.register('getCurrentBranchName', GetCurrentBranchNameTask) {
             setGroup('Git')
             finalizedBy('getLastPublishedTag')
