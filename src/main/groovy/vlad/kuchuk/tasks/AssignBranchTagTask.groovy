@@ -13,5 +13,7 @@ class AssignBranchTagTask extends DefaultTask{
         String command = 'git tag ' + extensions.getBuildVersion()
         command.execute()
         println(command)
+        def res = 'git push origin --tags'.execute().text
+        println(res)
     }
 }
